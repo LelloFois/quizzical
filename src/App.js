@@ -32,49 +32,50 @@ function App() {
     return newArray
   }
 
-  const fetchData = async(url) => {
-    setSpinner(true)
-
-    const res = await fetch(url);
-    const data = await res.json();
-
-
-    // sets the questions object as needed
-
-    setQuestions(data.results.map(question => {
-      
-      const answers = []
-      for (let i = 0; i < question.incorrect_answers.length ; i++) {
-        answers.push({
-          id: nanoid(),
-          answer: question.incorrect_answers[i],
-          isHeld: false,
-          isCorrect: false,
-        })
-      }
-      answers.push({
-        id: nanoid(),
-        answer: question.correct_answer,
-        isHeld: false,
-        isCorrect: true,
-      })
-      const shuffledAnswers = shuffle(answers);
-
-      const obj =  {
-        id: nanoid(),
-        category: question.category,
-        question: question.question,
-        answers: shuffledAnswers,
-      }
-      return obj
-     
-    }
-    ))
-    setSpinner(false)
-  }
+ 
 
   useEffect(() => {
     const url = 'https://opentdb.com/api.php?amount=5&type=multiple'
+    const fetchData = async(url) => {
+      setSpinner(true)
+  
+      const res = await fetch(url);
+      const data = await res.json();
+  
+  
+      // sets the questions object as needed
+  
+      setQuestions(data.results.map(question => {
+        
+        const answers = []
+        for (let i = 0; i < question.incorrect_answers.length ; i++) {
+          answers.push({
+            id: nanoid(),
+            answer: question.incorrect_answers[i],
+            isHeld: false,
+            isCorrect: false,
+          })
+        }
+        answers.push({
+          id: nanoid(),
+          answer: question.correct_answer,
+          isHeld: false,
+          isCorrect: true,
+        })
+        const shuffledAnswers = shuffle(answers);
+  
+        const obj =  {
+          id: nanoid(),
+          category: question.category,
+          question: question.question,
+          answers: shuffledAnswers,
+        }
+        return obj
+       
+      }
+      ))
+      setSpinner(false)
+    }
     fetchData(url)
   }, [play])
 
@@ -163,8 +164,6 @@ console.log(checkedAnswers)
     )
   })
 
-
-
   const loader = 
     <div className = "spinner-box">
       <div className = "pulse-container">  
@@ -173,8 +172,6 @@ console.log(checkedAnswers)
         <div className = "pulse-bubble pulse-bubble-3"></div>
       </div>
     </div>
-  
-
 
   const firstPage =
     <div className='first-page'>
@@ -184,27 +181,27 @@ console.log(checkedAnswers)
         </div>
     </div>
  
-
-
   return (
     <div className="App">
       {spinner ? loader : !showQuiz ? firstPage :
       showQuiz && <div className="question--container">
       { quest }
       <div className='btn-check--container'>
-        { areAllSelected && !checkedAnswers &&
-        <CheckAnswers 
-          checkAnswers = { checkAnswers }
-          
-        />}
+        {areAllSelected && !checkedAnswers &&
+          <CheckAnswers 
+            checkAnswers = { checkAnswers }
+            
+          />
+        }
         {checkedAnswers && 
-        <PlayAgain 
-          checkedAnswers = { checkedAnswers }
-          questions = { questions } 
-          result = { result }
-          playAgain = { playAgain }
-        />}
-      </div>
+          <PlayAgain 
+            checkedAnswers = { checkedAnswers }
+            questions = { questions } 
+            result = { result }
+            playAgain = { playAgain }
+          />
+        }
+        </div>
     </div>
    
     }
