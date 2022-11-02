@@ -1,38 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Karla", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f7fb;
+}
+
 .App {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  color: #293264;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title button {
+  width: 10rem;
+  height: 3rem;
+  background: #4d5b9e;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1.2rem;
+  color: #f5f7fb;
+  cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.title button:active {
+  box-shadow: inset 5px 5px 25px 5px #293264;
+  transform: scale(0.95);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.blob-1 {
+  position: fixed;
+  top: -5rem;
+  right: -10rem;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.blob-2 {
+  position: fixed;
+  bottom: -8rem;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.question--container {
+  max-width: 50rem;
+  height: 100vh;
+  margin: 10rem 0;
+  color: #293264;
+}
+
+.answers {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 3rem;
+  border-bottom: 1px solid #dbdef0;
+}
+
+.answers button {
+  padding: 0.5rem 1.5rem;
+  background: #f5f7fb;
+  border: 1px solid #293264;
+  border-radius: 0.625rem;
+  color: #293264;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.button--active {
+  background: #d6dbf5;
+}
+
+.btn-check--container {
+  width: 100%;
+  height: 6rem;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  gap: 2rem;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-check {
+  width: 10rem;
+  height: 3rem;
+  color: #f5f7fb;
+  background: #4d5b9e;
+  border: none;
+  border-radius: 0.625rem;
+  font-size: 1.1rem;
 }
 
-@keyframes App-logo-spin {
+.btn-check:active {
+  box-shadow: inset 5px 5px 25px 5px #293264;
+  transform: scale(0.95);
+}
+
+button.held {
+  background-color: #d6dbf5;
+}
+
+button.correct {
+  background-color: #94d7a2;
+}
+
+button.wrong {
+  background-color: #f8bcbc;
+}
+
+.spinner-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.pulse-container {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pulse-bubble {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #4d5b9e;
+}
+
+.pulse-bubble-1 {
+  animation: pulse 0.4s ease 0s infinite alternate;
+}
+.pulse-bubble-2 {
+  animation: pulse 0.4s ease 0.2s infinite alternate;
+}
+.pulse-bubble-3 {
+  animation: pulse 0.4s ease 0.4s infinite alternate;
+}
+
+@keyframes pulse {
   from {
-    transform: rotate(0deg);
+    opacity: 1;
+    transform: scale(1);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 0.25;
+    transform: scale(0.75);
   }
 }
