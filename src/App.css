@@ -121,6 +121,22 @@ button.wrong {
   background-color: #f8bcbc;
 }
 
+@media (min-width: 320px) and (max-width: 720px) {
+  .question--container {
+    max-width: 20rem;
+  }
+
+  .answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .answers button {
+    margin: 0;
+  }
+}
 .spinner-box {
   width: 100%;
   height: 100%;
