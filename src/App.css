@@ -121,7 +121,7 @@ button.wrong {
   background-color: #f8bcbc;
 }
 
-@media (min-width: 320px) and (max-width: 720px) {
+@media (min-width: 320px) and (max-width: 680px) {
   .question--container {
     max-width: 20rem;
   }
@@ -135,6 +135,12 @@ button.wrong {
 
   .answers button {
     margin: 0;
+  }
+}
+
+@media (min-width: 681px) and (max-width: 900px) {
+  .question--container {
+    margin: 1rem 2rem;
   }
 }
 .spinner-box {
